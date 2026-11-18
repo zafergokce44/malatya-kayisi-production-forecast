@@ -1,0 +1,14 @@
+{
+  "status": "partial_independent_verification",
+  "historical_experiment_rows": 30,
+  "new_script": "scripts/nested_cv_reconstruction.py",
+  "reconstruction_not_original_source": true,
+  "matched_checks": [
+    {"dataset": "MALATYA", "model": "Extra Trees", "outer_fold": 1, "checked": "indices, best_params, fixed_predictions, tuned_predictions", "max_absolute_difference_less_than": 6e-11},
+    {"dataset": "TAM", "model": "Doğrusal SVR", "outer_folds": [1, 2], "checked": "all saved per-fold fields", "max_absolute_difference": 1.4551915228366852e-11},
+    {"dataset": "TAM", "model": "Random Forest", "outer_fold": 1, "checked": "fixed_predictions", "max_absolute_difference_less_than": 6e-11},
+    {"dataset": "MALATYA", "model": "Random Forest", "outer_fold": 1, "checked": "fixed_predictions", "max_absolute_difference_less_than": 6e-11}
+  ],
+  "not_yet_verified": ["30 of 30 complete outer folds", "all 5x3 nested summary statistics", "identification of original historical Python source"],
+  "restricted_source_data_included": false
+}
