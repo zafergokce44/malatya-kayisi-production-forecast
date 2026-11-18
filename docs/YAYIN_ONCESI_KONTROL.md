@@ -7,7 +7,7 @@
 - [ ] İlkbahar duyarlılığı kaynak betiğini bul; `results/05_ilkbahar_sonuclar/` ile eşleştir.
 - [ ] Betikleri yetkili veriyle çalıştır, tablolarla sayısal eşleşmeyi doğrula.
 - [ ] Bağımlılıkların kesin sürümlerini kontrol et; `openpyxl` sürümünü kaydet.
-- [ ] Kod için lisans tercihi yap (örneğin araştırmacı uygunsa MIT). Lisansı sahibinin izni olmadan otomatik atama.
+- [x] Kod için **MIT Lisansı** seçildi ve GitHub deposuna `LICENSE` eklendi (2026-11-18; araştırmacı tarafından). Özgün kaynak veri dosyalarının yeniden dağıtım hakları bu lisansa dahil değildir.
 - [ ] `CITATION.cff` içindeki yazarlık/versiyon bilgilerini doğrula.
 - [ ] GitHub'a yükledikten sonra doğru görünürlüğü, dosya listesini ve kişisel bağlantı içermediğini kontrol et.
 - [ ] Zenodo GitHub entegrasyonunu aç; doğrulanmış bir GitHub *Release* sürümünü arşivle.

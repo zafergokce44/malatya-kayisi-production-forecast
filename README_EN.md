@@ -8,6 +8,6 @@ This repository documents a thesis-based analysis of fresh apricot production us
 
 **Limits of reproducibility:** Executable sources for the reference split, repeated CV and chronological evaluation are present. Archived results for nested CV and the spring-minimum-temperature sensitivity study are present, but their exact executable source scripts have not yet been verified. The archive has not been rerun against the original dataset during packaging. Do not describe it as fully reproducible at this stage.
 
-**Data policy:** Original meteorological data and source Excel workbooks are **excluded** pending clarification of redistribution permissions. See [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md). Code distribution license to be selected by the researcher.
+**Data policy:** Original meteorological data and source Excel workbooks are **excluded** pending clarification of redistribution permissions. See [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md). The repository source code owned by the researcher is published under the [MIT License](LICENSE). This license does not grant redistribution rights for original meteorological datasets or third-party data and does not override the data availability restrictions.
 
 See the [Turkish README](README.md) and [run instructions](docs/CALISTIRMA.md) for more detail. When a Zenodo DOI is actually registered, add it to citation metadata and the thesis appendix.

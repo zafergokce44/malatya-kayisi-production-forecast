@@ -74,7 +74,7 @@ Bu doğrulama komutu **dosya bütünlüğü ve kaynak kodu sözdizimini** kontro
 
 **Meteoroloji Genel Müdürlüğünden (MGM) temin edilen ham veriler ve kaynak Excel çalışma kitapları bu depoda yer almaz.** İçerik sahipliği ve paylaşım koşulları açıklığa kavuşturulmadan ham veriler GitHub'a veya Zenodo'ya yüklenmemelidir. Ayrıntılar: [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md).
 
-**Kodun kullanım lisansı henüz seçilmedi.** Kamuya açık depoda üçüncü kişilerin kodu yeniden kullanabilmesi isteniyorsa araştırmacı açık bir lisans seçmelidir. Bkz. [`docs/YAYIN_ONCESI_KONTROL.md`](docs/YAYIN_ONCESI_KONTROL.md).
+**Kod lisansı:** Araştırmacının paylaşma hakkına sahip olduğu bu depodaki kaynak kodları, depo kökündeki [`LICENSE`](LICENSE) dosyasında belirtilen **MIT Lisansı** altında sunulmaktadır. Bu lisans, Meteoroloji Genel Müdürlüğünden temin edilen ham verileri, üçüncü taraf veri kaynaklarını veya bu depodaki analiz sonuçlarının ayrıca izin gerektirebilecek veri içeriklerini otomatik olarak kapsamaz. Veri paylaşımı için [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md) belgesine bakınız.
 
 ## Atıf ve DOI
 
