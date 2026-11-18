@@ -1,0 +1,21 @@
+TAHMİN ZAMANLAMASI VE GİRDİ ERİŞİLEBİLİRLİĞİ
+
+Ana kronolojik doğrulama senaryosu cari yıl meyve veren ağaç sayısı ile
+cari yıl Haziran-Temmuz meteorolojik göstergelerini kullanmaktadır.
+
+Veri dosyasında meyve veren ağaç sayısının ölçüm/yayın tarihi yer almadığından,
+bu değişkenin hasat öncesinde kesin olarak bilindiği varsayılmamıştır.
+
+Haziran-Temmuz meteorolojik göstergeleri ilgili aylar tamamlanmadan tam olarak
+bilinemeyeceği için ana senaryo sezon öncesi bir tahmin olarak yorumlanmamalıdır.
+Bu model, girdilerin erişilebilir olduğu zamana bağlı olarak sezon içi/hasat
+dönemi tahmini veya geriye dönük üretim kestirimi niteliğindedir.
+
+Bu sınırlılığı sınamak amacıyla ayrı bir duyarlılık senaryosu oluşturulmuştur.
+Bu senaryoda yalnızca bir önceki yılın (t-1) meyve veren ağaç sayısı ile
+Haziran-Temmuz meteorolojik değerleri kullanılmıştır. Böylece cari yıla ait
+meteorolojik veya ağaç sayısı bilgisi modele verilmemiştir.
+
+Önceki yıl resmi verilerinin hangi tarihte yayımlandığı veri dosyasından
+belirlenemediğinden, t-1 senaryosu da yayın takvimi açısından mutlak bir
+operasyonel tahmin iddiası taşımamaktadır.

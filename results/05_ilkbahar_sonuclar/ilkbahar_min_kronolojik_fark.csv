@@ -1,0 +1,4 @@
+﻿Model;RMSE_Fark_Ilkbahar11_Eksi_Temel8;MAE_Fark_Ilkbahar11_Eksi_Temel8;Ilkbahar11_Daha_Dusuk_Mutlak_Hata_Yil_Sayisi;Toplam_Yil
+Extra Trees;6924,869321455277;921,9942571580905;11;22
+Random Forest;9378,18776265427;3173,3182233804255;12;22
+Doğrusal SVR;-1388,874535719544;-1465,4694354437088;10;22

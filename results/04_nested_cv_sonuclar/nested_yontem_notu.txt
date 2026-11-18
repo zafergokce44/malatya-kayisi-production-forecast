@@ -1,0 +1,6 @@
+Dış doğrulama: KFold(n_splits=5, shuffle=True, random_state=42)
+İç hiperparametre araması: KFold(n_splits=3, shuffle=True, random_state=42)
+Seçim ölçütü: negatif RMSE (GridSearchCV scoring=neg_root_mean_squared_error)
+Tüm imputation/standardization Pipeline içindedir ve yalnız ilgili eğitim katında öğrenilir.
+Dış test katları hiperparametre seçimine hiçbir aşamada girmez.
+Nested arama yalnız temel 8 değişkenli set üzerinde yapılmıştır; ilkbahar 11 değişken deneyi ayrı duyarlılık analizidir.
