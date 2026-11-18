@@ -1,0 +1,16 @@
+# Do not publish source workbooks or private data.
+*.xlsx
+*.xls
+*.xlsm
+*.ods
+*.zip
+.env
+.env.*
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+# Protect local datasets, preserve the explanatory stub.
+data/*
+!data/README.md

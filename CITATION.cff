@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Bu arşivden yararlanırsanız ilgili yüksek lisans tezini ve yazılım arşivini atıflayınız. DOI yayımdan sonra eklenecektir."
+title: "Malatya Yaş Kayısı Üretim Tahmini — Tez Analiz Kodları"
+type: software
+authors:
+  - family-names: "Gökçe"
+    given-names: "Zafer"
+version: "0.1.0"
+keywords:
+  - "apricot"
+  - "machine learning"
+  - "Extra Trees"
+  - "Random Forest"
+  - "support vector regression"
+  - "reproducible research"
+abstract: "Malatya yaş kayısı üretimi için regresyon modelleri, doğrulama analizleri ve kayıtlı sonuç çıktıları. Ön yayın: nested CV ve ilkbahar duyarlılığı kaynak betikleri henüz eşleştirilmemiştir."
