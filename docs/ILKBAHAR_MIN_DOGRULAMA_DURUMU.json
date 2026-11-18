@@ -1,0 +1,89 @@
+{
+  "title": "Şubat–Mart–Nisan minimum sıcaklık duyarlılık deneyi: kayıtlı sonuçlar ile kaynak betik eşleşmesi",
+  "thesis_version": "Zafer Gökçe Tez - Düzeltilmiş Sürüm (v3)(2).docx",
+  "thesis_sections": [
+    "2.8.4",
+    "3.8.5",
+    "Ek 2: Model Parametreleri"
+  ],
+  "provenance": "Özgün sonuç CSV dosyaları ve referans analiz_v2.py temel alınarak yeniden oluşturulmuş kod",
+  "code_status": "reconstructed_not_original",
+  "numeric_validation": {
+    "files": {
+      "ilkbahar11_cv_katlar.csv": {
+        "status": "matched",
+        "rows": 300,
+        "numeric_columns": 6,
+        "max_absolute_numeric_difference": 5.005858838558197e-09,
+        "non_numeric_mismatched_cells": 0
+      },
+      "ilkbahar11_cv_ozet.csv": {
+        "status": "matched",
+        "rows": 6,
+        "numeric_columns": 20,
+        "max_absolute_numeric_difference": 4.7584762796759605e-09,
+        "non_numeric_mismatched_cells": 0
+      },
+      "ilkbahar_min_karsilastirma.csv": {
+        "status": "matched",
+        "rows": 12,
+        "numeric_columns": 20,
+        "max_absolute_numeric_difference": 3.1123636290431023e-06,
+        "non_numeric_mismatched_cells": 0
+      },
+      "ilkbahar11_oof_tekrar.csv": {
+        "status": "matched",
+        "rows": 60,
+        "numeric_columns": 4,
+        "max_absolute_numeric_difference": 4.918547347187996e-09,
+        "non_numeric_mismatched_cells": 0
+      },
+      "ilkbahar_min_eslesik_kat_farklari.csv": {
+        "status": "matched",
+        "rows": 6,
+        "numeric_columns": 8,
+        "max_absolute_numeric_difference": 2.781826623277084e-06,
+        "non_numeric_mismatched_cells": 0
+      },
+      "ilkbahar11_kronolojik_tahminler.csv": {
+        "status": "matched",
+        "rows": 22,
+        "numeric_columns": 5,
+        "max_absolute_numeric_difference": 4.743924364447594e-09,
+        "non_numeric_mismatched_cells": 0
+      },
+      "ilkbahar_min_kronolojik_ozet.csv": {
+        "status": "matched",
+        "rows": 6,
+        "numeric_columns": 5,
+        "max_absolute_numeric_difference": 4.9622030928730965e-09,
+        "non_numeric_mismatched_cells": 0
+      },
+      "ilkbahar_min_kronolojik_fark.csv": {
+        "status": "matched",
+        "rows": 3,
+        "numeric_columns": 4,
+        "max_absolute_numeric_difference": 7.09405867382884e-11,
+        "non_numeric_mismatched_cells": 0
+      }
+    },
+    "all_numeric_matches_within_tolerance": true,
+    "tolerance_absolute": 1e-05
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0",
+    "scipy": "1.17.0",
+    "openpyxl": "3.1.5"
+  },
+  "dataset_included": false,
+  "validation_reproduced_observations": {
+    "TAM": 57,
+    "MALATYA": 42
+  },
+  "reference_result_tables": [
+    "Tablo 12"
+  ]
+}
