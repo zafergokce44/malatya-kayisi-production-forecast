@@ -1,16 +1,18 @@
 cff-version: 1.2.0
-message: "Bu arşivden yararlanırsanız ilgili yüksek lisans tezini ve yazılım arşivini atıflayınız. DOI yayımdan sonra eklenecektir."
+message: "If you use this software archive, please cite the thesis and the archived software release. A DOI will be added after Zenodo publication."
 title: "Malatya Yaş Kayısı Üretim Tahmini — Tez Analiz Kodları"
 type: software
 authors:
   - family-names: "Gökçe"
     given-names: "Zafer"
-version: "0.1.0"
+version: "0.4.0"
+repository-code: "https://github.com/zafergokce44/malatya-kayisi-production-forecast"
 keywords:
   - "apricot"
   - "machine learning"
   - "Extra Trees"
   - "Random Forest"
   - "support vector regression"
+  - "cross-validation"
   - "reproducible research"
-abstract: "Malatya yaş kayısı üretimi için regresyon modelleri, doğrulama analizleri ve kayıtlı sonuç çıktıları. Ön yayın: nested CV ve ilkbahar duyarlılığı kaynak betikleri henüz eşleştirilmemiştir."
+abstract: "A documented pre-release research-code archive for apricot-production forecasting. Includes original scripts and saved analyses, a reconstructed nested CV script with partially verified outer folds, and a reconstructed spring-temperature sensitivity script verified against eight archived result CSV files. Original meteorological data and source Excel workbooks are not distributed."

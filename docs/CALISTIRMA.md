@@ -1,49 +1,43 @@
-# Çalıştırma yönergeleri — orijinal kodun beklediği ortam
+# Tez kaynak kodlarını çalıştırma
 
-**Not:** Bu talimatlar, mevcut kaynak betiklerin kullandığı dosya yollarına göre yazılmıştır. Kodlar arşiv oluşturulurken veri üzerinde çalıştırılmamıştır. Analiz sonuçlarını doğrulanmış yeniden üretim sonucu olarak raporlamayın.
+Bu klasörde **iki tarihsel/orijinal betik** (`tezfinal.py`, `analiz_v2.py`) ve **iki sonradan oluşturulmuş betik** (`nested_cv_reconstruction.py`, `ilkbahar_min_reconstruction.py`) bulunur. İkinci gruptakiler özgün betik olarak sunulmamalıdır. Sayısal doğrulama kayıtları ilgili `docs/` belgelerinde yer alır.
 
-## 1. Önerilen ortam
+## Ortam
 
-- Python **3.13** (kayıtlı Aşama 2–3 çalıştırmaları Python 3.13.5).
-- `pip install -r requirements.txt`
-- Google Colab'da: depoyu ZIP olarak yükleyip açabilir veya GitHub'dan klonlayabilirsiniz.
+- Kayıtlı Aşama 2/3 ve ilkbahar doğrulama ortamı: Python **3.13.5**, NumPy **2.3.5**, pandas **2.2.3**, scikit-learn **1.8.0**, SciPy **1.17.0**, openpyxl **3.1.5** (matplotlib **3.10.8**).
+- `python -m pip install -r requirements.txt`
+- Orijinal betikler Google Colab'a özel `/content/` yolları kullanabilir; kaynak veriyi kendi yerel/özel ortamında edinip uygun yolları ayarlamalısın.
 
-## 2. Veri erişimi
-
-1. Yasal olarak kullanma hakkınız bulunan Excel veri dosyasını kendi özel Colab ortamınıza yükleyin.
-2. `scripts/tezfinal.py` ve `scripts/analiz_v2.py` dosyalarında yer alan `INPUT_FILE`, `FILE_PATH`, `SHEET_NAME` ve çıktı yollarını kontrol edin.
-3. Orijinal Aşama 1–3 betiği Colab'da şu girdi yolunu kullanıyor:
-
-   `/content/Veri_Seti_Son_duzeltilmis_v3_agac_farklari_eklendi.xlsx`
-
-4. Her iki betik varsayılan olarak **`Tam veri seti`** çalışma sayfasını bekler. `tezfinal.py`, sayfa adı bulunmazsa ilk sayfayı okumaya çalışır; **bu, yanlış veriyle analiz yapma riski doğurur**. Doğru sayfayı çalıştırmadan önce manuel kontrol edin.
-
-## 3. Referans analiz
-
-Colab'da, dosyalar `repo` dizinindeyse:
-
-```bash
-python repo/scripts/tezfinal.py
-```
-
-Betik sonuçları `/content/` altına yazacak şekilde özgün hâlinde korunmuştur. Seed 42 ve diğer seed sonuçları, kullanılan veri seti sürümüyle birlikte doğrulanmalıdır. Rassal veri ayrımı kronolojik tahmin değildir.
-
-## 4. Tekrarlı CV ve kronolojik doğrulama
-
-```bash
-python repo/scripts/analiz_v2.py
-```
-
-Bu betik Aşama 1 (veri denetimi), Aşama 2 (10 tekrarlı 5-katlı CV) ve Aşama 3 (genişleyen pencere 2003–2024 kronolojik test) kodlarını birlikte içerir. Çıktıların varsayılan kök yolu `/content/analiz_v2_ciktilari` şeklindedir.
-
-## 5. Nested CV ve ilkbahar duyarlılığı
-
-Bu iki deneyin **kayıtlı çıktı dosyaları** `results/` altında mevcuttur. Ancak bunlara karşılık gelen, kesin sürümü doğrulanmış *çalıştırılabilir betikler* henüz bu pakete dahil edilmemiştir. Kodu bulup deney sonuçlarıyla eşleştirene kadar bu aşamaların bağımsız yeniden çalıştırılabildiği iddia edilmemelidir.
-
-## 6. Dosya bütünlüğü
+## Statik kontrol
 
 ```bash
 python tools/verify_repository.py
 ```
 
-Bu komut dosyaların SHA-256 karmalarını ve Python sözdizimini kontrol eder. Model metriklerini **yeniden hesaplamaz**.
+Bu komut SHA-256, Python sözdizimi, notebook JSON yapısı ve yanlışlıkla eklenen Excel dosyaları açısından kontrol yapar. **Makine öğrenmesi modellerini eğitmez.**
+
+## Orijinal kodlar
+
+- `scripts/tezfinal.py`: Seed 42 ve önceki beş-seed rassal ayrımlar, gruplar ve gecikmeli değişken duyarlılığı.
+- `scripts/analiz_v2.py`: 10×5 tekrarlı CV ve genişleyen pencere kronolojik doğrulama; çıktılar varsayılan olarak `/content/analiz_v2_ciktilari` altında oluşturulur.
+- Bu iki betikteki `INPUT_FILE`, `FILE_PATH`, `SHEET_NAME` ve çıktı yollarını **özgün veri üzerinde** çalıştırmadan önce kontrol et. Kaynak çalışma sayfası: `Tam veri seti`. Kaynak Excel dosyalarının otomatik keşfedilmesi yanlış sürümü seçebilir.
+
+## Yeniden oluşturulmuş Nested CV
+
+```bash
+python scripts/nested_cv_reconstruction.py --input "C:\\ozel_veri\\Veri_Seti_Son_duzeltilmis_v3_agac_farklari_eklendi.xlsx" --output-dir "C:\\ozel_sonuclar\\nested" --reference-outer "results/04_nested_cv_sonuclar/nested_outer_katlar.csv"
+```
+
+`--reference-outer` verilirse kaydedilmiş dış kat verileriyle eşleşme kontrol edilir. 30 dış katın tamamı için kapsamlı doğrulama henüz tamamlanmamıştır. Bkz. [`NESTED_CV_KOD_DOGRULAMA.md`](NESTED_CV_KOD_DOGRULAMA.md).
+
+## Yeniden oluşturulmuş ilkbahar duyarlılığı
+
+```bash
+python scripts/ilkbahar_min_reconstruction.py --input "C:\\ozel_veri\\Veri_Seti_Son_duzeltilmis_v3_agac_farklari_eklendi.xlsx" --output "C:\\ozel_sonuclar\\ilkbahar" --validate-dir "results/05_ilkbahar_sonuclar"
+```
+
+Kayıtlı sekiz sonuç CSV'si ile eşleşme doğrulandı. Bkz. [`ILKBAHAR_MIN_KOD_DOGRULAMA.md`](ILKBAHAR_MIN_KOD_DOGRULAMA.md).
+
+## Veri kaynağı ve dağıtım
+
+Depoda MGM ham verileri veya kaynak Excel çalışma kitapları yer almaz; bu dosyalar yalnız yetkili yerel ortamda kullanılmalıdır. Kayıtlı sonuçların bazıları yıl/üretim/tahmin alanları içerir; açık paylaşım hakları ayrıca değerlendirilmelidir. [`DATA_AVAILABILITY.md`](../DATA_AVAILABILITY.md).

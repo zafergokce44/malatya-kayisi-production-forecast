@@ -1,13 +1,24 @@
-# Malatya Apricot Production Prediction — Thesis Code Archive
+# Malatya Apricot Production Forecasting — Thesis Analysis Archive
 
-**Researcher:** Zafer Gökçe  
-**Affiliation:** Bayburt University, Graduate School, Department of Industrial Engineering (2026)  
-**Status:** Pre-release research archive, version 0.1.0. **No DOI has been assigned yet.**
+**Author:** Zafer Gökçe  
+**Institution:** Bayburt University, Graduate School, Department of Industrial Engineering, Türkiye (2026)  
+**Status:** **0.4.0 development/pre-release**; **no Zenodo DOI has been assigned**.  
+**Repository:** https://github.com/zafergokce44/malatya-kayisi-production-forecast
 
-This repository documents a thesis-based analysis of fresh apricot production using Extra Trees, Random Forest and linear-kernel support vector regression. The historical modelling set contains 57 observations spanning available records in 1934–2024; a 42-observation continuous subset covers 1983–2024. The study applies repeated cross-validation, nested cross-validation, feature sensitivity tests and expanding-window chronological validation.
+This repository documents Extra Trees, Random Forest and linear-kernel Support Vector Regression analyses of fresh apricot production using agricultural-capacity and meteorological inputs. Two modelling datasets are distinguished: **TAM (57 observations)** from available historical records in 1934–2024 and **MALATYA (42 observations)** from the contiguous 1983–2024 subset. The Seed 42 holdout is a randomized split, not a forward-in-time forecast. Expanding-window validation covers 22 one-step-ahead assessments for 2003–2024. The results do not establish a causal effect of climate change.
 
-**Limits of reproducibility:** Executable sources for the reference split, repeated CV and chronological evaluation are present. Archived results for nested CV and the spring-minimum-temperature sensitivity study are present, but their exact executable source scripts have not yet been verified. The archive has not been rerun against the original dataset during packaging. Do not describe it as fully reproducible at this stage.
+## Source-to-result status
 
-**Data policy:** Original meteorological data and source Excel workbooks are **excluded** pending clarification of redistribution permissions. See [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md). The repository source code owned by the researcher is published under the [MIT License](LICENSE). This license does not grant redistribution rights for original meteorological datasets or third-party data and does not override the data availability restrictions.
+| Analysis | Script | Evidence and limits |
+|---|---|---|
+| Reference Seed 42 and five-seed exploratory split | `scripts/tezfinal.py` | Original source supplied; complete independent numerical rerun not documented |
+| Repeated 10×5 CV, feature groups, lag sensitivity | `scripts/analiz_v2.py` | Supplied code and archived results; full independent rerun not documented |
+| Chronological validation | `scripts/analiz_v2.py` | Supplied code and archived results; full independent rerun not documented |
+| Nested 5×3 CV | `scripts/nested_cv_reconstruction.py` | **Reconstructed**, not original; selected outer folds matched saved predictions; full 30-fold validation pending |
+| Spring minimum temperatures, 8 versus 11 inputs | `scripts/ilkbahar_min_reconstruction.py` | **Reconstructed**; all eight recorded result CSV files matched within 1×10⁻⁵ tolerance |
 
-See the [Turkish README](README.md) and [run instructions](docs/CALISTIRMA.md) for more detail. When a Zenodo DOI is actually registered, add it to citation metadata and the thesis appendix.
+See [run instructions](docs/CALISTIRMA.md), [experiment mapping](docs/DENEY_ESLESTIRME.md) and the [archive audit](docs/ARSIV_DENETIMI_v0.4.0.md). Run `python tools/verify_repository.py` for hash/syntax checks (not a model reproduction test).
+
+**Data access:** Source Excel files and original MGM meteorological data are not bundled. Some results include year-level actual production or row-level predictions; their publication rights require separate checking. Refer to [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md). Code owned by the author is licensed under [MIT](LICENSE); this does not license third-party datasets.
+
+Citation metadata is in [CITATION.cff](CITATION.cff); add an actual verified DOI only after a Zenodo record has been published.

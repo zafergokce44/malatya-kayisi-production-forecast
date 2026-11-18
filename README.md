@@ -3,83 +3,64 @@
 **Araştırmacı:** Zafer Gökçe  
 **Tez:** *İklim Değişikliğinin Malatya Kayısı Üretimi Üzerindeki Etkisinin Yapay Zekâ Modelleri ile Tahmini*  
 **Kurum:** Bayburt Üniversitesi, Lisansüstü Eğitim Enstitüsü, Endüstri Mühendisliği Ana Bilim Dalı (2026)  
-**Arşiv durumu:** **Ön yayın / doğrulama gerektiren araştırma arşivi (v0.1.0)**. Henüz DOI atanmış değildir.
+**Arşiv durumu:** **0.4.0 geliştirme/ön yayın sürümü**. Zenodo DOI'si henüz alınmadı.  
+**Depo:** https://github.com/zafergokce44/malatya-kayisi-production-forecast
 
-## Amaç ve kapsam
+## Araştırmanın çerçevesi
 
-Bu arşiv, tez kapsamında kullanılan **Extra Trees**, **Random Forest** ve **doğrusal SVR** modellerine ilişkin kaynak kodlarını; tekrarlı çapraz doğrulama, kronolojik doğrulama, iç içe çapraz doğrulama ve ilkbahar minimum sıcaklığı duyarlılık deneylerinin **eldeki sonuç çıktılarını** denetlenebilir bir klasör yapısında toplar.
+Tarımsal kapasite ve meteorolojik göstergelerle Malatya yaş kayısı üretiminin tahmini için Extra Trees, Random Forest ve doğrusal çekirdekli SVR kullanılmıştır. Modellemeye ait iki veri yapısı vardır: mevcut 1934–2024 kayıtlarından gecikme sonrasında oluşturulan **TAM (57 gözlem)** ve 1983–2024 dönemine ait kesintisiz **MALATYA (42 gözlem)** alt örneklemi. Nihai giriş matrisi cari/gecikmeli meyve veren ağaç sayısı ile Haziran–Temmuz ortalama sıcaklık, maksimum sıcaklık ve ortalama rüzgâr göstergelerinden oluşan sekiz açıklayıcı değişkeni içerir.
 
-- Tarihsel kaynak veri aralığı **1934–2024**; temel modelleme matrisi **57** gözlem (`TAM`).
-- Kesintisiz dönem alt örneklemi **1983–2024**; **42** gözlem (`MALATYA`).
-- Referans deneyde `FINAL_SEED = 42`; tekrarlı değerlendirmede 10 tekrarlı 5 kat kullanılmıştır.
-- Referans Seed 42 değerlendirmesi **rassal eğitim-test ayrımıdır** ve ileri dönem tahmini olarak yorumlanamaz.
-- Kronolojik doğrulama, **1983–2002** başlangıç eğitimiyle **2003–2024** için 22 bir-adım-ileri sınama içerir.
-
-> **Bilimsel sınır:** Bu arşiv nedensel bir iklim değişikliği etkisi kanıtı sunmaz. Verilerle gerçekleştirilen tahmin ve doğrulama çalışmalarını belgeler.
+**Seed 42 referans testi rassal eğitim/test ayrımıdır; geleceğe yönelik tahmin doğrulaması değildir.** Genişleyen pencere analizi, 1983–2002 ilk eğitim dönemiyle 2003–2024 için 22 ardışık tek adımlı sınama içerir. Bulgular, iklim değişikliğinin nedensel etkisini belirlemek için yeterli değildir.
 
 ## Dosya yapısı
 
 ```text
-.
-├── README.md
-├── README_EN.md
-├── CITATION.cff
-├── requirements.txt
-├── .gitignore
-├── scripts/
-│   ├── tezfinal.py                 # Seed 42 + 5 seed + değişken grubu + L1
-│   └── analiz_v2.py                # 10x5 CV + 2003–2024 kronolojik doğrulama
-├── notebooks/
-│   └── tezfinal.ipynb              # Çıktıları ve kişisel meta verisi temizlenmiş
-├── results/
-│   ├── 02_tekrarli_cv/             # Kaydedilmiş aşama 2 sonuçları
-│   ├── 03_kronolojik/              # Kaydedilmiş aşama 3 sonuçları
-│   ├── 04_nested_cv_sonuclar/      # Nested CV çıktıları (kaynak betik eşleşmesi eksik)
-│   └── 05_ilkbahar_sonuclar/       # İlkbahar deney çıktıları (kaynak betik eşleşmesi eksik)
-├── data/
-│   └── README.md                   # Ham veri bu depoda dağıtılmaz
-├── docs/
-│   ├── CALISTIRMA.md
-│   ├── DENEY_ESLESTIRME.md
-│   ├── YAYIN_ONCESI_KONTROL.md
-│   ├── KAYNAK_KOKENI.tsv
-│   └── kaynak_ortam_surumleri.txt
-└── tools/
-    └── verify_repository.py
+scripts/
+  tezfinal.py                      # Referans Seed 42 / beş-seed ön değerlendirmeler
+  analiz_v2.py                     # 10×5 CV, değişken grupları, L1 ve kronolojik değerlendirme
+  nested_cv_reconstruction.py      # İç içe CV: sonradan yeniden oluşturulan kod (kısmi doğrulama)
+  ilkbahar_min_reconstruction.py   # İlkbahar 8/11 değişken duyarlılığı (çıktılarla eşleşti)
+notebooks/tezfinal.ipynb           # Temizlenmiş not defteri
+results/02_tekrarli_cv/            # Tekrarlı CV sonuçları
+results/03_kronolojik/             # Kronolojik sonuçlar
+results/04_nested_cv_sonuclar/     # Nested CV sonuçları
+results/05_ilkbahar_sonuclar/      # İlkbahar duyarlılık sonuçları
+docs/                              # Yöntem, kaynak eşleme, doğrulama ve çalıştırma notları
+data/README.md                     # Ham veri yayımlanmıyor
+tools/verify_repository.py         # Dosya bütünlüğü ve Python sözdizimi denetimi
+README_EN.md · CITATION.cff · LICENSE · DATA_AVAILABILITY.md
+requirements.txt · checksums.sha256 · .gitignore
 ```
 
-## Mevcut kodun kapsamı ve eksikler
+## Kod–deney eşleştirmesi ve doğrulama durumu
 
-| Deney | Kaynak kod | Çıktılar | Durum |
+| Tezdeki analiz | Kod | Kayıtlı sonuçlar | Bu arşivde doğrulanma durumu |
 |---|---|---|---|
-| Referans Seed 42 ve 5 seed | `scripts/tezfinal.py` | Kod yeniden çalıştırıldığında üretir | Kod mevcut; yeniden çalıştırılmadı |
-| 10×5 tekrarlı CV ve değişken grupları | `scripts/analiz_v2.py` | `results/02_tekrarli_cv/` | Kod ve önceden kaydedilmiş sonuçlar mevcut |
-| Genişleyen pencere kronolojik test | `scripts/analiz_v2.py` | `results/03_kronolojik/` | Kod ve önceden kaydedilmiş sonuçlar mevcut |
-| Nested CV | **Henüz eşleştirilmedi** | `results/04_nested_cv_sonuclar/` | **Sonuç-odaklı arşiv; tam yeniden çalıştırılabilir değil** |
-| İlkbahar minimum sıcaklığı deneyi | **Henüz eşleştirilmedi** | `results/05_ilkbahar_sonuclar/` | **Sonuç-odaklı arşiv; tam yeniden çalıştırılabilir değil** |
+| Seed 42 referans karşılaştırması, ilk beş-seed denemeleri | `scripts/tezfinal.py` | Çalıştırmayla üretilir | Orijinal kod kopyası; bu sürümde tam sayısal yeniden çalışma belgelenmedi |
+| 10 tekrarlı 5-katlı CV, değişken grupları ve L1 | `scripts/analiz_v2.py` | `results/02_tekrarli_cv/` | Kod ve özgün çıktı kayıtları var; tam bağımsız eşleşme bu sürümde belgelenmedi |
+| 2003–2024 genişleyen pencere | `scripts/analiz_v2.py` | `results/03_kronolojik/` | Kod ve özgün çıktı kayıtları var; tam bağımsız eşleşme bu sürümde belgelenmedi |
+| İç içe çapraz doğrulama (Tablo 8) | `scripts/nested_cv_reconstruction.py` | `results/04_nested_cv_sonuclar/` | **Yeniden oluşturulan betik**; yalnız seçili dış katlar birebir doğrulandı, 30/30 kontrol tamamlanmadı |
+| İlkbahar minimum sıcaklıkları (Tablo 12) | `scripts/ilkbahar_min_reconstruction.py` | `results/05_ilkbahar_sonuclar/` | **Yeniden oluşturulan betik**; kayıtlı sekiz sonuç CSV'sinin tamamıyla 1×10⁻⁵ toleransta eşleşti |
 
-Kaynak kodlar **mevcut analiz sürümlerinden alınmıştır; model sonuçları bu arşivi hazırlarken yeniden hesaplanmamıştır.** Kodların ve çıktıların birebir yeniden üretilebilirliği, yetkili veri erişimi sağlandıktan sonra ayrıca test edilmelidir.
+Kaynak ve çıktı ilişkisini ayrıntılı gösteren belge: [`docs/DENEY_ESLESTIRME.md`](docs/DENEY_ESLESTIRME.md). Nested CV ve ilkbahar analizlerinin doğrulama kayıtları ayrıca [`docs/NESTED_CV_KOD_DOGRULAMA.md`](docs/NESTED_CV_KOD_DOGRULAMA.md) ve [`docs/ILKBAHAR_MIN_KOD_DOGRULAMA.md`](docs/ILKBAHAR_MIN_KOD_DOGRULAMA.md) dosyalarındadır. Betiklerin *orijinal* kaynak oldukları iddia edilmemektedir.
 
-## Çalıştırma
+## Çalıştırma ve bütünlük kontrolü
 
-Colab ortamı ve orijinal kodların beklediği dosya yolları için [`docs/CALISTIRMA.md`](docs/CALISTIRMA.md) belgesine bakın. Sadece çıktı dosyalarını gözden geçirmek için ham veriye ihtiyaç yoktur.
+Python sürümleri, yerel veri dosyası kullanımı ve doğrulama komutları için [`docs/CALISTIRMA.md`](docs/CALISTIRMA.md) belgesine bakınız. GitHub deposu ham veri olmadan tüm model sonuçlarını sıfırdan hesaplayamaz.
 
 ```bash
+python -m pip install -r requirements.txt
 python tools/verify_repository.py
 ```
 
-Bu doğrulama komutu **dosya bütünlüğü ve kaynak kodu sözdizimini** kontrol eder; analizleri çalıştırmaz veya yeniden üretilebilirliği ispatlamaz.
+Statik kontrol SHA-256 karmalarını, kaynak dosya sözdizimini ve arşivde yanlışlıkla eklenmiş kaynak veri dosyalarını tarar. **Model eğitimi veya yeniden hesaplama yerine geçmez.** Dosyalar değiştirildiğinde `checksums.sha256` dosyasının yeni sürüme göre güncellenmesi gerekir.
 
-## Veri erişimi ve lisans
+## Veri paylaşımı ve lisans
 
-**Meteoroloji Genel Müdürlüğünden (MGM) temin edilen ham veriler ve kaynak Excel çalışma kitapları bu depoda yer almaz.** İçerik sahipliği ve paylaşım koşulları açıklığa kavuşturulmadan ham veriler GitHub'a veya Zenodo'ya yüklenmemelidir. Ayrıntılar: [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md).
+Ham MGM meteoroloji verileri veya bu verileri içeren kaynak Excel çalışma kitapları depoda **yoktur**. Bazı kayıtlı sonuç dosyaları yıl, gerçek üretim veya gözlem bazında tahmin içerir; bu kayıtların açık yayım koşulları ayrıca denetlenmelidir. Bkz. [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md).
 
-**Kod lisansı:** Araştırmacının paylaşma hakkına sahip olduğu bu depodaki kaynak kodları, depo kökündeki [`LICENSE`](LICENSE) dosyasında belirtilen **MIT Lisansı** altında sunulmaktadır. Bu lisans, Meteoroloji Genel Müdürlüğünden temin edilen ham verileri, üçüncü taraf veri kaynaklarını veya bu depodaki analiz sonuçlarının ayrıca izin gerektirebilecek veri içeriklerini otomatik olarak kapsamaz. Veri paylaşımı için [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md) belgesine bakınız.
+Yayınlama hakkı araştırmacıya ait kodlar [`LICENSE`](LICENSE) dosyasındaki **MIT Lisansı** kapsamındadır. MIT lisansı kaynak veri veya üçüncü taraf materyallerin yeniden dağıtım izni değildir.
 
-## Atıf ve DOI
+## Atıf ve kalıcı arşiv
 
-Geçici atıf meta verisi [`CITATION.cff`](CITATION.cff) dosyasındadır. GitHub sürümü Zenodo'da arşivlenip gerçek DOI oluştuktan sonra README, CITATION.cff ve tezin Ek 3 bölümü **gerçek, doğrulanmış DOI ile** güncellenmelidir. DOI henüz yoktur.
-
-## Provenans
-
-Bu paket, araştırmacının mevcut Python betikleri ve kayıtlı deney sonuçlarından hazırlanmış düzenli bir **arşiv kopyasıdır**. Kaynak ZIP adları için [`docs/KAYNAK_KOKENI.tsv`](docs/KAYNAK_KOKENI.tsv), SHA-256 değerleri için `checksums.sha256` incelenebilir. `tezfinal.py` kopyasından yalnızca kişisel Colab belge bağlantısı çıkarılmış; bilimsel mantığı değiştirilmemiştir. Notebook çıktıları ve kullanıcı kimlik meta verileri temizlenmiştir.
+Geçici atıf bilgileri [`CITATION.cff`](CITATION.cff) dosyasındadır. **DOI henüz yoktur**; Zenodo tarafından verilen gerçek tanımlayıcı, yayımlanan sürüm doğrulandıktan sonra eklenir. Arşivin hazırlık durumu için [`docs/ARSIV_DENETIMI_v0.4.0.md`](docs/ARSIV_DENETIMI_v0.4.0.md) belgesine bakınız.

@@ -1,9 +1,9 @@
-# Recorded Stage 2 evaluation environment: Python 3.13.5
-# Versions recorded in experiment output manifests; not independently rerun here.
+# Environment recorded in the source result logs / independent spring reconstruction:
+# Python 3.13.5. These versions refer to the verified analysis environment,
+# not a guarantee of binary-identical results across different operating systems.
 numpy==2.3.5
 pandas==2.2.3
 matplotlib==3.10.8
 scikit-learn==1.8.0
 scipy==1.17.0
-# Excel reader version was not recorded in the supplied experiment log.
-openpyxl>=3.1,<4
+openpyxl==3.1.5
